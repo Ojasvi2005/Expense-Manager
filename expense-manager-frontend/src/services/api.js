@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const API = axios.create({
-    baseURL: "https://expense-manager-api-fabb.onrender.com"
+    baseURL: "https://expense-manager-api-fabb.onrender.com/api"
 })
 
 API.interceptors.request.use((req) => {
