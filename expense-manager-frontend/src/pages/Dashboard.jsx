@@ -1,23 +1,19 @@
-import { useState } from "react"
-import { useEffect } from "react"
+import { useState, useEffect } from "react"
 import AddExpense from "../components/AddExpense"
 import ExpenseList from "../components/ExpenseList"
 import ExpenseChart from "../components/ExpenseChart"
-
 
 function Dashboard() {
 
   const [expenses, setExpenses] = useState([])
 
-    useEffect(() => {
+  useEffect(() => {
+    const token = localStorage.getItem("token")
 
-  const token = localStorage.getItem("token")
-
-  if (!token) {
-    window.location.href = "/"
-  }
-
-}, [])
+    if (!token) {
+      window.location.href = "/"
+    }
+  }, [])
 
   const logout = () => {
     localStorage.removeItem("token")
@@ -25,27 +21,34 @@ function Dashboard() {
   }
 
   return (
-    <div style={{ padding: "40px" }}>
+    <div className="container">
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div className="dashboard-header">
         <h1>Expense Dashboard</h1>
 
-        <button
-          onClick={logout}
-          style={{ background: "red", color: "white", padding: "8px" }}
-        >
+        <button className="logout-btn" onClick={logout}>
           Logout
         </button>
       </div>
 
-      <AddExpense setExpenses={setExpenses} />
+      <div className="dashboard-grid">
 
-      <ExpenseList
-        expenses={expenses}
-        setExpenses={setExpenses}
-      />
+        <div className="card">
+          <h2>Add Expense</h2>
+          <AddExpense setExpenses={setExpenses} />
+        </div>
 
-      <ExpenseChart expenses={expenses} />
+        <div className="card">
+          <h2>Expense List</h2>
+          <ExpenseList expenses={expenses} setExpenses={setExpenses} />
+        </div>
+
+        <div className="card">
+          <h2>Expense Chart</h2>
+          <ExpenseChart expenses={expenses} />
+        </div>
+
+      </div>
 
     </div>
   )

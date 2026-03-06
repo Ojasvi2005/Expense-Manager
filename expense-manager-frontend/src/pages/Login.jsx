@@ -28,34 +28,33 @@ function Login() {
   }
 
   return (
-    <div style={{ padding: "40px" }}>
-      <h1>Login</h1>
+    <div className="auth-container">
 
-      <input
-        placeholder="Email"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      <div className="auth-card">
 
-      <br /><br />
+        <h1>Login</h1>
 
-      <input
-        type="password"
-        placeholder="Password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <input
+          placeholder="Email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-      <br /><br />
+        <input
+          type="password"
+          placeholder="Password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
 
-      <button onClick={handleLogin}>
-        Login
-      </button>
+        <button onClick={handleLogin}>
+          Login
+        </button>
 
-      <br /><br />
+        <p className="auth-link">
+          Don't have an account?
+          <a href="/register"> Register</a>
+        </p>
 
-      <p>
-        Don't have an account?  
-        <a href="/register"> Register</a>
-      </p>
+      </div>
 
     </div>
   )
