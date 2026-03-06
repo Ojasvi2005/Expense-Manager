@@ -3,6 +3,7 @@ import AddExpense from "../components/AddExpense"
 import ExpenseList from "../components/ExpenseList"
 import ExpenseChart from "../components/ExpenseChart"
 
+
 function Dashboard() {
 
   const [expenses, setExpenses] = useState([])
@@ -20,6 +21,10 @@ function Dashboard() {
     window.location.href = "/"
   }
 
+  const totalExpense = expenses.reduce((sum, e) => sum + Number(e.amount), 0)
+  const totalTransactions = expenses.length
+  const avgExpense = totalTransactions ? (totalExpense / totalTransactions).toFixed(2) : 0
+
   return (
     <div className="container">
 
@@ -29,6 +34,25 @@ function Dashboard() {
         <button className="logout-btn" onClick={logout}>
           Logout
         </button>
+      </div>
+
+      <div className="stats">
+
+        <div className="stat-card">
+          <h3>Total Expenses</h3>
+          <p>₹{totalExpense}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Transactions</h3>
+          <p>{totalTransactions}</p>
+        </div>
+
+        <div className="stat-card">
+          <h3>Average Expense</h3>
+          <p>₹{avgExpense}</p>
+        </div>
+
       </div>
 
       <div className="dashboard-grid">
